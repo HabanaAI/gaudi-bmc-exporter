@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ras-monitoring
+  namespace: monitoring
+  labels:
+    app: ras-monitoring
+spec:
+  selector:
+    matchLabels:
+      app: ras-monitoring
+  template:
+    metadata:
+      labels:
+        app: ras-monitoring
+    spec:
+      serviceAccountName: bmc-exporter-service-account
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: habana.ai/services
+                operator: Exists
+      containers:
+      - name: ras-monitoring
+        image: habana_bmc_exporter_image
+        imagePullPolicy: Always
+        args:
+          - "--config"
+          - "/tmp/config.json"
+        resources:
+          limits:
+            memory: 3Gi
+            cpu: 500m
+          requests:
+            cpu: 350m
+            memory: 2Gi
+        # readiness probes mark the service available to accept traffic.
+        readinessProbe:
+          httpGet:
+            path: /debug/readiness
+            port: 5000
+          initialDelaySeconds: 50
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 2
+        # liveness probes mark the service alive or dead (to be restarted).
+        livenessProbe:
+          httpGet:
+            path: /debug/liveness
+            port: 5000
+          initialDelaySeconds: 50
+          periodSeconds: 30
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 2
+        volumeMounts:
+        - name: config-volume
+          mountPath: /tmp
+        env:
+          - name: KUBERNETES_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: ipmi-creds
+                key: username
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: ipmi-creds
+                key: password
+      volumes:
+      - name: config-volume
+        configMap:
+          name: bmc-exporter-conf

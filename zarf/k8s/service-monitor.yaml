@@ -1,0 +1,106 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    release: stable
+    app: ras-monitoring
+  name: ras-monitoring-service-monitor
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 5m
+    path: /ethernet-info
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 2m30s
+  - interval: 5m
+    path: /lane-info
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 2m30s
+  - interval: 2m
+    path: /ethernet-status
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 2m30s
+  - interval: 3m
+    path: /ethernet-status-counters
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 2m30s
+  - interval: 5m
+    path: /temperature
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /pcie-info
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /status
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /frequency
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /power
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /sensor-temperature
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /sensor-voltage
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /sensor-current
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /info
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /security
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /direct
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /ctemperature
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /sensor-voltage-monitor
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 5m
+    path: /hbm
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 4m30s
+  - interval: 3m
+    path: /bmc-state
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 30s
+  - interval: 3m
+    path: /alerts
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 30s
+  - interval: 5m
+    path: /rma
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 2m30s
+  - interval: 3m
+    path: /exporter-info
+    port: ras-monitoring-endpoint
+    scrapeTimeout: 30s
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app: ras-monitoring
+
+

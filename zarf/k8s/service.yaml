@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ras-monitoring-service
+  namespace: monitoring
+  labels:
+    app: ras-monitoring
+spec:
+  selector:
+    app: ras-monitoring
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      name: ras-monitoring-endpoint

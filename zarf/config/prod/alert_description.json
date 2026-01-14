@@ -1,0 +1,324 @@
+{
+  "rules": {
+    "DOUBLE_ECC_BLOCK_ERR": {
+      "severity": "Error",
+      "description": "SRAM Double ECC Block Error"
+    },
+    "SINGLE_ECC_BLOCK_ERR": {
+      "severity": "Error",
+      "description": "SRAM Single ECC Block Error"
+    },
+    "HBM_COMMAND_ADDRESS_ERR": {
+      "severity": "Error",
+      "description": "HBM Command/Address Error"
+    },
+    "HBM_DATA_WRITE_ERR": {
+      "severity": "Error",
+      "description": "HBM Data Write Error"
+    },
+    "HBM_DATA_READ_ERR": {
+      "severity": "Error",
+      "description": "HBM Data Read Error"
+    },
+    "DOUBLE_ECC_ERR": {
+      "severity": "Error",
+      "description": "HBM Double ECC Error"
+    },
+    "SINGLE_ECC_ERR": {
+      "severity": "Error",
+      "description": "HBM Single ECC Error"
+    },
+    "SRAM_UNREPAIRABLE_RINGS_ERR": {
+      "severity": "Error",
+      "description": "SRAM Rings Unrepairable"
+    },
+    "SRAM_REPAIRED_RINGS_ERR": {
+      "severity": "Notice",
+      "description": "SRAM Rings Repaired"
+    },
+    "HBM_CATASTROPHIC_TEMP_ERR": {
+      "severity": "Fatal",
+      "description": "HBM Catastrophic Temperature"
+    },
+    "PCIE_UNCORRECTABLE_FATAL_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Uncorrectable Fatal Error"
+    },
+    "PCIE_RECEIVER_OVERFLOW_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Receiver Overflow"
+    },
+    "PCIE_FLOW_CONTROL_PROTOCOL_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Flow Control Protocol Error"
+    },
+    "PCIE_SURPRISE_LINK_DOWN_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Surprise Link Down Error"
+    },
+    "PCIE_MALFUNCTION_TLP_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Malfunction TLP Error"
+    },
+    "PCIE_DLLP_PROTOCOL_ERR": {
+      "severity": "Critical",
+      "description": "PCIe DLLP Protocol Error"
+    },
+    "PCIE_ECRC_ERR": {
+      "severity": "Notice",
+      "description": "PCIe ECRC Error"
+    },
+    "PCIE_COMPLETION_TIMEOUT_ERR": {
+      "severity": "Notice",
+      "description": "PCIe Completion Timeout Error"
+    },
+    "PCIE_CORRECTED_INTERNAL_ERR": {
+      "severity": "Notice",
+      "description": "PCIe Corrected Internal Error"
+    },
+    "PCIE_REPLAY_BUFFER_ROLLOVER_ERR": {
+      "severity": "Notice",
+      "description": "PCIe Replay Buffer Rollover Error"
+    },
+    "PCIE_REPLAY_TIMER_TIMEOUT_ERR": {
+      "severity": "Notice",
+      "description": "PCIe Replay Timer Timeout Error"
+    },
+    "PCIE_BAD_DLLP_ERR": {
+      "severity": "Notice",
+      "description": "PCIe Bad DLLP Error"
+    },
+    "PCIE_BAD_TLP_ERR": {
+      "severity": "Notice",
+      "description": "PCIe Bad TLP Error"
+    },
+    "PCIE_RECEIVER_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Receiver Error"
+    },
+    "PCIE_LCRD_ERR": {
+      "severity": "Critical",
+      "description": "PCIe LCRD Error"
+    },
+    "PCIE_RX_NAK_DLLP_ERR": {
+      "severity": "Critical",
+      "description": "PCIe RX NAK DLLP Error"
+    },
+    "PCIE_TX_NAK_DLLP_ERR": {
+      "severity": "Critical",
+      "description": "PCIe TX NAK DLLP Error"
+    },
+    "PCIE_RETRY_TLP_ERR": {
+      "severity": "Critical",
+      "description": "PCIe Retry TLP Error"
+    },
+    "NIC_BER_ERR": {
+      "severity": "Notice",
+      "description": "NIC Bit Error Rate"
+    },
+    "NIC_MULTIPLE_NACK_ERR": {
+      "severity": "Notice",
+      "description": "NIC Multiple NACK (no acknowledge)"
+    },
+    "NIC_MULTIPLE_CRC_ERR": {
+      "severity": "Critical",
+      "description": "NIC Multiple CRC"
+    },
+    "NIC_MULTIPLE_LINK_RE_INITIALIZATIONS_ERR": {
+      "severity": "Critical",
+      "description": "NIC Multiple Link Re-initializations"
+    },
+    "NIC_MULTIPLE_LINK_RE_TRANSMISSIONS_ERR": {
+      "severity": "Notice",
+      "description": "NIC Multiple Link Re-transmissions"
+    },
+    "THERMAL_THRESHOLD_CROSSING_ERR": {
+      "severity": "Notice",
+      "description": "Thermal Threshold Crossing"
+    },
+    "THERMAL_TEMP_RISE_TIME_VIOLATION_ERR": {
+      "severity": "Notice",
+      "description": "Thermal Rise Time Violation"
+    },
+    "VOLTAGE_MONITOR_THRESHOLD_1_ERR": {
+      "severity": "Notice",
+      "description": "Voltage Monitor - Warning Threshold crossed"
+    },
+    "VOLTAGE_MONITOR_THRESHOLD_2_ERR": {
+      "severity": "Notice",
+      "description": "Voltage Monitor - Error Threshold crossed"
+    },
+    "SECURITY_SPI_REVOKED_PUB_KEY_ERR": {
+      "severity": "Notice",
+      "description": "Flash - Public Key Revoked"
+    },
+    "SECURITY_SPI_SVN_ERR": {
+      "severity": "Notice",
+      "description": "Flash - SVN Error"
+    },
+    "SECURITY_SPI_SIGNATURE_ERR": {
+      "severity": "Notice",
+      "description": "Flash - Signature Error"
+    },
+    "SECURITY_AGENT_REVOKED_PUB_KEY_ERR": {
+      "severity": "Notice",
+      "description": "Agent - Public Key Revoked"
+    },
+    "SECURITY_AGENT_SVN_ERR": {
+      "severity": "Notice",
+      "description": "Agent - SVN (softwart version number) mismatch"
+    },
+    "SECURITY_AGENT_SIGNATURE_ERR": {
+      "severity": "Notice",
+      "description": "Agent - Signature validition failure"
+    },
+    "SECURITY_AGENT_UBOOT_ERR": {
+      "severity": "Notice",
+      "description": "Agent - uBoot failure"
+    },
+    "SECURITY_AGENT_LINUX_ERR": {
+      "severity": "Notice",
+      "description": "Agent - Linux failure"
+    },
+    "SECURITY_AGENT_ZEPHYR_ERR": {
+      "severity": "Notice",
+      "description": "Agent - Zephyr failure"
+    },
+    "SECURITY_REVOKE_LAST_KEY_ERR": {
+      "severity": "Notice",
+      "description": "Security - Revoking Last Key"
+    },
+    "SECURITY_PERMISSION_ACCESS_ERR": {
+      "severity": "Notice",
+      "description": "Security - Permission Access"
+    },
+    "WD_HEARTBEAT_ERR": {
+      "severity": "Error",
+      "description": "Heartbeat Watchdog Timed Out"
+    },
+    "WD_TDR_ERR": {
+      "severity": "Error",
+      "description": "TDR Watchdog Timed Out"
+    },
+    "WD_HW_ERR": {
+      "severity": "Error",
+      "description": "Firmware Watchdog Timed Out"
+    },
+    "CHECKSUM_PPBOOT_PRIMARY_ERR": {
+      "severity": "Error",
+      "description": "Checksum - Pre-PreBoot Primary mismatch"
+    },
+    "CHECKSUM_PPBOOT_SECONDARY_ERR": {
+      "severity": "Error",
+      "description": "Checksum - Pre-PreBoot Secondary mismatch"
+    },
+    "CHECKSUM_PREBOOT_PRIMARY_ERR": {
+      "severity": "Error",
+      "description": "Checksum - PreBoot Primary mismatch"
+    },
+    "CHECKSUM_PREBOOT_SECONDARY_ERR": {
+      "severity": "Error",
+      "description": "Checksum - PreBoot Secondary mismatch"
+    },
+    "CHECKSUM_CPLD_ERR": {
+      "severity": "Error",
+      "description": "Checksum - CPLD mismatch"
+    },
+    "CHECKSUM_HBM_RMA_PERITY_ERR": {
+      "severity": "Error",
+      "description": "Checksum - HBM Parity table section"
+    },
+    "CHECKSUM_HBM_RMA_ECC_ERR": {
+      "severity": "Error",
+      "description": "Checksum - HBM ECC table section"
+    },
+    "CHECKSUM_HBM_RMA_SRAM_ECC_ERR": {
+      "severity": "Error",
+      "description": "Checksum - SRAM ECC table section"
+    },
+    "CHECKSUM_HBM_RMA_ROW_REPAIR_ERR": {
+      "severity": "Error",
+      "description": "Checksum - HBM Row Repair table section"
+    },
+    "CHECKSUM_HBM_RMA_CAUSE_ERR": {
+      "severity": "Error",
+      "description": "Checksum - RMA Cause table section"
+    },
+    "FIT_INVALID_IMAGE_FORMAT_ERR": {
+      "severity": "Error",
+      "description": "FIT Invalid Image Format"
+    },
+    "FIT_TARGET_ADDREES_ERR": {
+      "severity": "Error",
+      "description": "FIT Target Address Error"
+    },
+    "FIT_NOT_RUNABLE_ERR": {
+      "severity": "Error",
+      "description": "FIT Not Runnable"
+    },
+    "FATAL_SRAM_ECC_ERR": {
+      "severity": "Fatal",
+      "description": "Fatal SRAM ECC"
+    },
+    "FATAL_HBM_ECC_ERR": {
+      "severity": "Fatal",
+      "description": "Fatal HBM ECC"
+    },
+    "FATAL_HBM_PARITY_ERR": {
+      "severity": "Fatal",
+      "description": "Fatal HBM Parity"
+    },
+    "FATAL_HBM_INIT_ERR": {
+      "severity": "Fatal",
+      "description": "Fatal HBM Initialization"
+    },
+    "FATAL_ROW_REPLACEMENT_ERR": {
+      "severity": "Fatal",
+      "description": "Fatal Row Replacement"
+    },
+    "HBM_MBIST_REPAIR_FAILURE_ERR": {
+      "severity": "Fatal",
+      "description": "HBM MBIST Repair Failure"
+    },
+    "VOLTAGE_MONITOR_THRESHOLD": {
+      "severity": "Notice",
+      "description": "Voltage Monitor Threshold"
+    },
+    "CHECKSUM_EEPROM_DEVICE_ACCESS_ERR": {
+      "severity": "Error",
+      "description": "Checksum - EEPROM Device Access Error"
+    },
+    "CHECKSUM_EEPROM_CRC_ERR": {
+      "severity": "Error",
+      "description": "Checksum - EEPROM CRC Error"
+    },
+    "CHECKSUM_EEPROM_UNKNOWN_ERR": {
+      "severity": "Error",
+      "description": "Checksum EEPROM Unknown Error"
+    },
+    "DYNAMIC_ROW_REPLACEMENT_ERR": {
+      "severity": "Error",
+      "description": "HBM - Dynamic Row Replacement Error"
+    },
+    "PLL_LOCK_ERR": {
+      "severity": "Critical",
+      "description": "PLL Lock Error"
+    },
+    "DOUBLE_ECC_COUNTER_ERR": {
+      "severity": "Error",
+      "description": "SRAM - Double ECC Counter"
+    },
+    "SINGLE_ECC_COUNTER_ERR": {
+      "severity": "Error",
+      "description": "SRAM - Single ECC Counter"
+    },
+    "DOUBLE_HBM_COUNTER_ERR": {
+      "severity": "Error",
+      "description": "HBM - Double ECC Counter"
+    },
+    "SINGLE_HBM_COUNTER_ERR": {
+      "severity": "Error",
+      "description": "HBM - Single ECC Counter"
+    }
+  }
+}

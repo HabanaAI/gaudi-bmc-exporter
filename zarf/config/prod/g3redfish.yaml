@@ -1,0 +1,732 @@
+endpoints:
+  - apiPath: Systems/system/Processors
+    forEach:
+      jsonPath: Members
+      extraParam:
+        name: oam
+        regex: OAM_([0-9]+)
+      endpoints:
+        - apiPath: "{{member}}"
+          metrics:
+            - name: habana_bmc_system_processors_serial_number
+              jsonPath: SerialNumber
+            - name: habana_bmc_system_processors_oem_intel_cpld_version_timestamp
+              jsonPath: Oem.Intel.CPLDVersionTimestamp
+            - name: habana_bmc_system_processors_oem_intel_current_public_key_hash_index
+              jsonPath: Oem.Intel.CurrentPublicKeyHashIndex
+            - name: habana_bmc_system_processors_oem_intel_current_svn
+              jsonPath: Oem.Intel.CurrentSVN
+            - name: habana_bmc_system_processors_oem_intel_device_pdr_repository_version
+              jsonPath: Oem.Intel.DevicePDRRepositoryVersion
+            - name: habana_bmc_system_processors_oem_intel_fw_image_source
+              jsonPath: Oem.Intel.FWImageSource
+            - name: habana_bmc_system_processors_oem_intel_global_time_from_reset
+              jsonPath: Oem.Intel.GlobalTimeFromReset
+            - name: habana_bmc_system_processors_oem_intel_key1_revocation
+              jsonPath: Oem.Intel.key1Revocation
+            - name: habana_bmc_system_processors_oem_intel_key2_revocation
+              jsonPath: Oem.Intel.key2Revocation
+            - name: habana_bmc_system_processors_oem_intel_key3_revocation
+              jsonPath: Oem.Intel.key3Revocation
+            - name: habana_bmc_system_processors_oem_intel_key4_revocation
+              jsonPath: Oem.Intel.key4Revocation
+            - name: habana_bmc_system_processors_oem_intel_key5_revocation
+              jsonPath: Oem.Intel.key5Revocation
+            - name: habana_bmc_system_processors_oem_intel_kmd_version
+              jsonPath: Oem.Intel.KMDVersion
+            - name: habana_bmc_system_processors_oem_intel_management_firmware_version
+              jsonPath: Oem.Intel.ManagementFirmwareVersion
+            - name: habana_bmc_system_processors_oem_intel_memory_cleanup
+              jsonPath: Oem.Intel.MemoryCleanup
+            - name: habana_bmc_system_processors_oem_intel_minimal_svn
+              jsonPath: Oem.Intel.MinimalSVN
+            - name: habana_bmc_system_processors_oem_intel_permanent_secured
+              jsonPath: Oem.Intel.PermanentSecured
+            - name: habana_bmc_system_processors_oem_intel_rdma_driver_version
+              jsonPath: Oem.Intel.RDMADriverVersion
+            - name: habana_bmc_system_processors_oem_intel_spi_write_protect
+              jsonPath: Oem.Intel.SPIWriteProtect
+        - apiPath: "{{member}}/ProcessorMetrics"
+          metrics:
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_boot_stage
+              jsonPath: Oem.Intel.BootStage
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_chip_status
+              jsonPath: Oem.Intel.ChipStatus
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_clock_throttling_power_caused
+              jsonPath: Oem.Intel.ClockThrottlingCausedbyPower
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_clock_throttling_thermal_caused
+              jsonPath: Oem.Intel.ClockThrottlingCausedbyThermal
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_device_activity
+              jsonPath: Oem.Intel.DeviceActivity
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_device_activity_counter
+              jsonPath: Oem.Intel.DeviceActivityCounter
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_emergency_break
+              jsonPath: Oem.Intel.EmergencyBreak
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_hbm_throttling
+              jsonPath: Oem.Intel.HBMThrottling
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_hbm_throttling_duration
+              jsonPath: Oem.Intel.HBMThrottlingDuration
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_internal_interconnect_errors
+              jsonPath: Oem.Intel.InternalInterconnectErrors
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_last_clock_throttling_duration
+              jsonPath: Oem.Intel.LastClockThrottlingDuration
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_last_power_break_duration
+              jsonPath: Oem.Intel.LastPowerBreakDuration
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_last_power_reduction_duration
+              jsonPath: Oem.Intel.LastPowerReductionDuration
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_power_break
+              jsonPath: Oem.Intel.PowerBreak
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_power_reduction
+              jsonPath: Oem.Intel.PowerReduction
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_power_state
+              jsonPath: Oem.Intel.PowerState
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_serdes_availability
+              jsonPath: Oem.Intel.SERDESAvailability
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_bandwidth_percent
+              jsonPath: Oem.Intel.BandwidthPercent
+            - name: habana_bmc_system_processors_processor_metrics_oem_intel_total_clock_throttling_duration
+              jsonPath: Oem.Intel.TotalClockThrottlingDuration
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Checksum.EEPROM
+              extraLabels:
+                description: "Checksum - EEPROM Device Error"
+                error_type: "CHECKSUM_EEPROM_DEVICE_ERR"
+                time: ""
+                severity: "Error"
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Checksum.ppBootPrimary
+              extraLabels:
+                description: "Checksum - Pre-PreBoot Primary mismatch"
+                error_type: "CHECKSUM_PPBOOT_PRIMARY_ERR"
+                time: ""
+                severity: "Error"
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Checksum.ppBootSecondary
+              extraLabels:
+                description: "Checksum - Pre-PreBoot Secondary mismatch"
+                error_type: "CHECKSUM_PPBOOT_SECONDARY_ERR"
+                time: ""
+                severity: "Error"
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Checksum.preBootPrimary
+              extraLabels:
+                description: "Checksum - PreBoot Primary mismatch"
+                error_type: "CHECKSUM_PREBOOT_PRIMARY_ERR"
+                time: ""
+                severity: "Error"
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Checksum.preBootSecondary
+              extraLabels:
+                description: "Checksum - PreBoot Secondary mismatch"
+                error_type: "CHECKSUM_PREBOOT_SECONDARY_ERR"
+                time: ""
+                severity: "Error"
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.D2D.D2DCoreIndex
+              extraLabels:
+                description: "D2D Core Index"
+                error_type: "D2D_CORE_INDEX"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.D2D.D2DErrorCount
+              extraLabels:
+                description: "D2D Error Count"
+                error_type: "D2D_ERROR_COUNT"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.D2D.D2DErrorState
+              extraLabels:
+                description: "D2D Error State"
+                error_type: "D2D_ERROR_STATE"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.D2D.D2DMACIndex
+              extraLabels:
+                description: "D2D MAC Index"
+                error_type: "D2D_MAC_INDEX"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.PLL.FirstPLLLockIndex
+              extraLabels:
+                description: "PLL Lock Error"
+                error_type: "PLL_LOCK_ERR"
+                time: ""
+                severity: "Critical"
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.RMA.D2DFatalReplay
+              extraLabels:
+                description: "D2D Fatal Replay"
+                error_type: "D2D_FATAL_REPLAY"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.RMA.D2DFatalTraining
+              extraLabels:
+                description: "D2D Fatal Training"
+                error_type: "D2D_FATAL_TRAINING"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.RMA.SPIGWFatalReplay
+              extraLabels:
+                description: "SPIGW Fatal Replay"
+                error_type: "SPIGW_FATAL_REPLAY"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Security.PermissionAccessError
+              extraLabels:
+                description: "Permission Access Error"
+                error_type: "PERMISSION_ACCESS_ERROR"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecurityAgent.LastPublicKeyRevoked
+              extraLabels:
+                description: "Last Public Key Revoked"
+                error_type: "LAST_PUBLIC_KEY_REVOKED"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecurityAgent.RevokedPublicKey
+              extraLabels:
+                description: "Revoked Public Key"
+                error_type: "REVOKED_PUBLIC_KEY"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecurityAgent.Signature
+              extraLabels:
+                description: "Signature"
+                error_type: "SIGNATURE"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecurityAgent.Zephyr
+              extraLabels:
+                description: "Zephyr"
+                error_type: "ZEPHYR"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecuritySPI.LastPublicKeyRevoked
+              extraLabels:
+                description: "Last Public Key Revoked"
+                error_type: "LAST_PUBLIC_KEY_REVOKED"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecuritySPI.RevokedPublicKey
+              extraLabels:
+                description: "Revoked Public Key"
+                error_type: "REVOKED_PUBLIC_KEY"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecuritySPI.Signature
+              extraLabels:
+                description: "Signature"
+                error_type: "SIGNATURE"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SecuritySPI.SVN
+              extraLabels:
+                description: "SVN"
+                error_type: "SVN"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.SPIGW.SPIGWErrorCount
+              extraLabels:
+                description: "SPIGW Error Count"
+                error_type: "SPIGW_ERROR_COUNT"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.VoltageMonitor.VoltageChannelIndex
+              extraLabels:
+                description: "Voltage Channel Index"
+                error_type: "VOLTAGE_CHANNEL_INDEX"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.VoltageMonitor.VoltageMonitorIndex
+              extraLabels:
+                description: "Voltage Monitor Index"
+                error_type: "VOLTAGE_MONITOR_INDEX"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.VoltageMonitor.VoltageState
+              extraLabels:
+                description: "Voltage State"
+                error_type: "VOLTAGE_STATE"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Watchdog.Heartbeat
+              extraLabels:
+                description: "Heartbeat"
+                error_type: "HEARTBEAT"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Watchdog.HW
+              extraLabels:
+                description: "HW"
+                error_type: "HW"
+                time: ""
+                severity: ""
+            - name: habana_bmc_alerts
+              jsonPath: Oem.Intel.Alert.Watchdog.TDR
+              extraLabels:
+                description: "TDR"
+                error_type: "TDR"
+                time: ""
+                severity: ""
+        - apiPath: "{{member}}/Ports"
+          forEach:
+            jsonPath: Members
+            extraParam:
+              name: port
+              regex: ([0-9]+)
+            endpoints:
+              - apiPath: "{{member}}"
+                metrics:
+                  - name: habana_bmc_ethernet_ports_current_speed_gbps
+                    jsonPath: currentSpeedGbps
+                  - name: habana_bmc_ethernet_ports_max_speed_gbps
+                    jsonPath: maxSpeedGbps
+                  - name: habana_bmc_ethernet_ports_width
+                    jsonPath: width
+                  - name: habana_bmc_ethernet_ports_oem_intel_anlt
+                    jsonPath: Oem.Intel.ANLT
+                  - name: habana_bmc_ethernet_ports_oem_intel_ber_correctable
+                    jsonPath: Oem.Intel.BERCorrectable
+                  - name: habana_bmc_ethernet_ports_oem_intel_ber_uncorrectable
+                    jsonPath: Oem.Intel.BERUncorrectable
+                  - name: habana_bmc_ethernet_ports_oem_intel_external_link_status
+                    jsonPath: Oem.Intel.ExternalLinkStatus
+                  - name: habana_bmc_ethernet_ports_oem_intel_high_ber
+                    jsonPath: Oem.Intel.HighBER
+                  - name: habana_bmc_ethernet_ports_oem_intel_pcs_status
+                    jsonPath: Oem.Intel.PCSStatus
+                  - name: habana_bmc_ethernet_ports_oem_intel_phy_status
+                    jsonPath: Oem.Intel.PHYStatus
+                  - name: habana_bmc_ethernet_ports_oem_intel_port_map
+                    jsonPath: Oem.Intel.PortMAP
+                  - name: habana_bmc_ethernet_ports_oem_intel_re_initializations
+                    jsonPath: Oem.Intel.ReInitializations
+                  - name: habana_bmc_ethernet_ports_oem_intel_ser_post_fec
+                    jsonPath: Oem.Intel.SERPostFEC
+                  - name: habana_bmc_ethernet_ports_oem_intel_ser_pre_fec
+                    jsonPath: Oem.Intel.SERPreFEC
+                  - name: habana_bmc_ethernet_ports_oem_intel_state_toggle
+                    jsonPath: Oem.Intel.StateToggle
+        - apiPath: "{{member}}/CacheMemory/0"
+          metrics:
+            - name: habana_bmc_system_processors_memory_cache_memory_type
+              jsonPath: MemoryType
+        - apiPath: "{{member}}/CacheMemory/0/MemoryMetrics"
+          metrics:
+            - name: habana_bmc_system_processors_memory_cache_metrics_memory_type
+              jsonPath: MemoryType
+            - name: habana_bmc_system_processors_memory_cache_metrics_bist_controller_fail_count
+              jsonPath: Oem.Intel.BISTControllerFailCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_double_ecc_count
+              jsonPath: Oem.Intel.DoubleECCCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_fatal_ecc_count
+              jsonPath: Oem.Intel.FatalECCCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_fatal_error_event_count
+              jsonPath: Oem.Intel.FatalErrorEventCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_first_sram_bist_fail_controller_read_id
+              jsonPath: Oem.Intel.FirstSRAMBISTFailControllerReadId
+            - name: habana_bmc_system_processors_memory_cache_metrics_second_sram_bist_fail_controller_fail_mask
+              jsonPath: Oem.Intel.SecondSRAMBISTFailControllerFailMask
+            - name: habana_bmc_system_processors_memory_cache_metrics_second_sram_bist_fail_controller_read_id
+              jsonPath: Oem.Intel.SecondSRAMBISTFailControllerReadId
+            - name: habana_bmc_system_processors_memory_cache_metrics_single_ecc_count
+              jsonPath: Oem.Intel.SingleECCCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_total_single_ecc_error_count
+              jsonPath: Oem.Intel.TotalSingleECCErrorCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_total_double_ecc_error_count
+              jsonPath: Oem.Intel.TotalDoubleECCErrorCount
+            - name: habana_bmc_system_processors_memory_cache_metrics_state_sensors_fatal_sram_ecc
+              jsonPath: Oem.Intel.StateSensors.FatalSRAMECC
+            - name: habana_bmc_system_processors_memory_cache_metrics_state_sensors_sram_ecc
+              jsonPath: Oem.Intel.StateSensors.SRAMECC
+            - name: habana_bmc_system_processors_memory_cache_metrics_state_sensors_sram_repair_failure
+              jsonPath: Oem.Intel.StateSensors.SRAMRepairFailure
+            - name: habana_bmc_system_processors_memory_cache_metrics_state_health_address_parity_error
+              jsonPath: HealthData.AlarmTrips.AddressParityError
+            - name: habana_bmc_system_processors_memory_cache_metrics_state_health_correctable_ecc_error
+              jsonPath: HealthData.AlarmTrips.CorrectableECCError
+            - name: habana_bmc_system_processors_memory_cache_metrics_state_health_uncorrectable_ecc_error
+              jsonPath: HealthData.AlarmTrips.UncorrectableECCError
+        - apiPath: "{{member}}/SubProcessors"
+          forEach:
+            jsonPath: Members
+            extraParam:
+              name: core
+              regex: (.*)
+            endpoints:
+              - apiPath: "{{member}}"
+                metrics:
+                  - name: habana_bmc_system_subprocessors_max_speed_mhz
+                    jsonPath: MaxSpeedMHz
+                  - name: habana_bmc_system_subprocessors_operating_speed_mhz
+                    jsonPath: OperatingSpeedMHz
+  - apiPath: Systems/system/Memory
+    forEach:
+      jsonPath: Members
+      extraParam:
+        name: oam
+        regex: OAM_([0-9]+)
+      endpoints:
+        - apiPath: "{{member}}"
+          metrics:
+            - name: habana_bmc_memory_operating_speed_mhz
+              jsonPath: OperatingSpeedMhz
+            - name: habana_bmc_memory_capacity_mib
+              jsonPath: CapacityMiB
+        - apiPath: "{{member}}/MemoryMetrics"
+          metrics:
+            - name: habana_bmc_memory_metrics_operating_speed_mhz
+              jsonPath: OperatingSpeedMhz
+            - name: habana_bmc_memory_metrics_banks_with_high_replaced_rows
+              jsonPath: Oem.Intel.BanksWithHighReplacedRows
+            - name: habana_bmc_memory_metrics_banks_with_low_replaced_rows
+              jsonPath: Oem.Intel.BanksWithLowReplacedRows
+            - name: habana_bmc_memory_metrics_banks_with_no_replaced_rows
+              jsonPath: Oem.Intel.BanksWithNoReplacedRows
+            - name: habana_bmc_memory_metrics_banks_with_partial_replaced_rows
+              jsonPath: Oem.Intel.BanksWithPartialReplacedRows
+            - name: habana_bmc_memory_metrics_double_ecc_errors_count
+              jsonPath: Oem.Intel.DoubleECCErrorsCount
+            - name: habana_bmc_memory_metrics_fatal_ecc_errors_count
+              jsonPath: Oem.Intel.FatalECCErrorsCount
+            - name: habana_bmc_memory_metrics_fatal_parity_errors_count
+              jsonPath: Oem.Intel.FatalParityErrorsCount
+            - name: habana_bmc_memory_metrics_capacity_utilization_percent
+              jsonPath:  Oem.Intel.CapacityUtilizationPercent
+            - name: habana_bmc_memory_metrics_hbm0_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM0GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm0_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM0LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm1_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM1GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm1_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM1LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm2_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM2GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm2_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM2LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm3_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM3GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm3_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM3LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm4_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM4GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm4_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM4LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm5_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM5GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm5_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM5LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm6_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM6GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm6_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM6LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm7_global_ecc_errors_count
+              jsonPath: Oem.Intel.HBM7GlobalECCErrorsCount
+            - name: habana_bmc_memory_metrics_hbm7_lanes_repaired_count
+              jsonPath: Oem.Intel.HBM7LanesRepairedCount
+            - name: habana_bmc_memory_metrics_hbm_throttling
+              jsonPath: Oem.Intel.HBMThrottling
+            - name: habana_bmc_memory_metrics_hbm_throttling_duration
+              jsonPath: Oem.Intel.HBMThrottlingDuration
+            - name: habana_bmc_memory_metrics_hbm_free_memory_size
+              jsonPath: Oem.Intel.hbmFreeMemorySize
+            - name: habana_bmc_memory_metrics_hbm_used_memory_size
+              jsonPath: Oem.Intel.hbmUsedMemorySize
+            - name: habana_bmc_memory_metrics_single_ecc_errors_per_second
+              jsonPath: Oem.Intel.SingleECCErrorsPerSecond
+            - name: habana_bmc_memory_metrics_total_changeable_row_replacements
+              jsonPath: Oem.Intel.TotalChangeableRowReplacements
+            - name: habana_bmc_memory_metrics_total_double_ecc_error_count
+              jsonPath: Oem.Intel.TotalDoubleECCErrorCount
+            - name: habana_bmc_memory_metrics_total_fatal_error_count
+              jsonPath: Oem.Intel.TotalFatalErrorCount
+            - name: habana_bmc_memory_metrics_total_single_ecc_error_count
+              jsonPath: Oem.Intel.TotalSingleECCErrorCount
+            - name: habana_bmc_memory_metrics_total_non_changeable_row_replacements
+              jsonPath: Oem.Intel.TotalNonChangeableRowReplacements
+            - name: habana_bmc_memory_metrics_state_sensors_fatal_hbm_ecc
+              jsonPath: Oem.Intel.StateSensors.FatalHBMECC
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_ecc
+              jsonPath: Oem.Intel.StateSensors.HBMECC
+            - name: habana_bmc_memory_metrics_state_sensors_initialization
+              jsonPath: Oem.Intel.StateSensors.HBMInitialization
+            - name: habana_bmc_memory_metrics_state_sensors_lane_repair
+              jsonPath: Oem.Intel.StateSensors.HBMLaneRepair
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_mbist_failure_cause
+              jsonPath: Oem.Intel.StateSensors.HBMMBISTFailureCause
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_mbist_failure_index
+              jsonPath: Oem.Intel.StateSensors.HBMMBISTFailureIndex
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_mbist_unrepairable
+              jsonPath: Oem.Intel.StateSensors.HBMMBISTUnrepairable
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_parity
+              jsonPath: Oem.Intel.StateSensors.HBMParity
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_row_replacements
+              jsonPath: Oem.Intel.StateSensors.HBMRowReplacements
+            - name: habana_bmc_memory_metrics_state_sensors_hbm_spare_row_availability
+              jsonPath: Oem.Intel.StateSensors.HBMSpareRowAvailability
+            - name: habana_bmc_memory_metrics_state_health_address_parity_error
+              jsonPath: HealthData.AlarmTrips.AddressParityError
+            - name: habana_bmc_memory_metrics_state_health_correctable_ecc_error
+              jsonPath: HealthData.AlarmTrips.CorrectableECCError
+            - name: habana_bmc_memory_metrics_state_health_uncorrectable_ecc_error
+              jsonPath: HealthData.AlarmTrips.UncorrectableECCError
+  - apiPath: Chassis/chassis
+    metrics:
+      - name: habana_bmc_state
+        jsonPath: PowerState
+        valueMappings:
+          off: 0
+          on: 1
+  - apiPath: Chassis/chassis/PCIeDevices
+    forEach:
+      jsonPath: Members
+      extraParam:
+        name: pcie
+        regex: (.*)
+      endpoints:
+        - apiPath: "{{member}}"
+          metrics:
+            - name: habana_bmc_pcie_devices_hdr_log0
+              jsonPath: Oem.Intel.HDRLog0
+            - name: habana_bmc_pcie_devices_hdr_log1
+              jsonPath: Oem.Intel.HDRLog1
+            - name: habana_bmc_pcie_devices_hdr_log2
+              jsonPath: Oem.Intel.HDRLog2
+            - name: habana_bmc_pcie_devices_hdr_log3
+              jsonPath: Oem.Intel.HDRLog3
+            - name: habana_bmc_pcie_devices_replay_buffer_num_rollover
+              jsonPath: Oem.Intel.ReplayBufferNumRollover
+            - name: habana_bmc_pcie_devices_rx_memory_read_count
+              jsonPath: Oem.Intel.RxMemoryReadCount
+            - name: habana_bmc_pcie_devices_rx_memory_write_count
+              jsonPath: Oem.Intel.RxMemoryWriteCount
+            - name: habana_bmc_pcie_devices_tx_memory_write_count
+              jsonPath: Oem.Intel.TxMemoryWriteCount
+            - name: habana_bmc_pcie_devices_state_sensors_pcie_receiver_status
+              jsonPath: Oem.Intel.StateSensors.PCIeReceiverStatus
+            - name: habana_bmc_pcie_devices_state_sensors_pcie_replay_timer_timeout_status
+              jsonPath: Oem.Intel.StateSensors.PCIeReplayTimerTimeoutStatus
+            - name: habana_bmc_pcie_devices_state_sensors_completion_timeout_status
+              jsonPath: Oem.Intel.StateSensors.CompletionTimeoutStatus
+            - name: habana_bmc_pcie_devices_state_sensors_ecrc_error_status
+              jsonPath: Oem.Intel.StateSensors.ECRCErrorStatus
+            - name: habana_bmc_pcie_devices_state_sensors_dl_protocol_eror_status
+              jsonPath: Oem.Intel.StateSensors.DLProtocolErorStatus
+            - name: habana_bmc_pcie_devices_state_sensors_surprise_link_down_error_status
+              jsonPath: Oem.Intel.StateSensors.SurpriseLinkDownErrorStatus
+            - name: habana_bmc_pcie_devices_state_sensors_flow_control_protocol_error_status
+              jsonPath: Oem.Intel.StateSensors.FlowControlProtocolErrorStatus
+            - name: habana_bmc_pcie_devices_state_sensors_receiver_over_flow_error_status
+              jsonPath: Oem.Intel.StateSensors.ReceiverOverFlowErrorStatus
+            - name: habana_bmc_pcie_devices_state_sensors_malformed_tlp_error_status
+              jsonPath: Oem.Intel.StateSensors.MalformedTLPErrorStatus
+            - name: habana_bmc_pcie_devices_state_sensors_uncorrectable_internal_error_status
+              jsonPath: Oem.Intel.StateSensors.UncorrectableInternalErrorStatus
+            - name: habana_bmc_pcie_devices_errors_correctable_error_count
+              jsonPath: PCIeErrors.CorrectableErrorCount
+            - name: habana_bmc_pcie_devices_errors_replay_timer_timeout
+              jsonPath: PCIeErrors.ReplayTimerTimeout
+            - name: habana_bmc_pcie_devices_interface_lane_in_use
+              jsonPath: PCIeInterface.LaneInUse
+            - name: habana_bmc_pcie_devices_interface_max_lanes
+              jsonPath: PCIeInterface.MaxLanes
+            - name: habana_bmc_pcie_devices_interface_max_pcie_type
+              jsonPath: PCIeInterface.MaxPCIeType
+            - name: habana_bmc_pcie_devices_interface_pcie_type
+              jsonPath: PCIeInterface.PCIeType
+  - apiPath: Chassis
+    forEach:
+      jsonPath: Members
+      skip:
+        - /redfish/v1/Chassis/chassis
+      extraParam:
+        name: oam
+        regex: OAM_([0-9]+)
+      endpoints:
+        - apiPath: "{{member}}/Sensors/current_adc48v_power"
+          category: power
+          metrics:
+            - name: habana_bmc_currentADC48Vpower
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/current_adc12v_power"
+          category: power
+          metrics:
+            - name: habana_bmc_currentADC12Vpower
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/current_adc3p3v_power"
+          category: power
+          metrics:
+            - name: habana_bmc_currentADC3p3Vpower
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/current_board_temperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_currentBoardTemperature
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/current_vrm_temperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_currentVRMTemperature
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/historical_board_temperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_historicalBoardTemperature
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/historical_vrm_temperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_historical_vrm_temperature
+              jsonPath: Reading
+        - apiPath: "{{member}}/Sensors/cTemp"
+          category: cTemperature
+          metrics:
+            - name: habana_bmc_ctemperature
+              jsonPath: Reading
+            - name: habana_bmc_ctemperature_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_ctemperature_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_ctemperature_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_ctemperature_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/currentSOCTemperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_temperature_current_soc_temperature
+              jsonPath: Reading
+            - name: habana_bmc_temperature_current_soc_temperature_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_temperature_current_soc_temperature_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_temperature_current_soc_temperature_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_temperature_current_soc_temperature_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/historicalSOCTemperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_temperature_historical_soc_temperature
+              jsonPath: Reading
+            - name: habana_bmc_temperature_historical_soc_temperature_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_temperature_historical_soc_temperature_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_temperature_historical_soc_temperature_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_temperature_historical_soc_temperature_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/maxTemperatureRiseTime"
+          category: temperature
+          metrics:
+            - name: habana_bmc_temperature_max_temperature_rise_time
+              jsonPath: Reading
+            - name: habana_bmc_temperature_max_temperature_rise_time_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_temperature_max_temperature_rise_time_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_temperature_max_temperature_rise_time_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_temperature_max_temperature_rise_time_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/currentHBMTemperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_temperature_current_hbm_temperature
+              jsonPath: Reading
+            - name: habana_bmc_temperature_current_hbm_temperature_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_temperature_current_hbm_temperature_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_temperature_current_hbm_temperature_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_temperature_current_hbm_temperature_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/historicalHBMTemperature"
+          category: temperature
+          metrics:
+            - name: habana_bmc_temperature_historical_hbm_temperature
+              jsonPath: Reading
+            - name: habana_bmc_temperature_historical_hbm_temperature_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_temperature_historical_hbm_temperature_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_temperature_historical_hbm_temperature_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_temperature_historical_hbm_temperature_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/currentSOC54VPower"
+          category: power
+          metrics:
+            - name: habana_bmc_power_current_soc_54v_power
+              jsonPath: Reading
+            - name: habana_bmc_power_current_soc_54v_power_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_power_current_soc_54v_power_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_power_current_soc_54v_power_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_power_current_soc_54v_power_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/peakSOC54VPower"
+          category: power
+          metrics:
+            - name: habana_bmc_power_peak_soc_54v_power
+              jsonPath: Reading
+            - name: habana_bmc_power_peak_soc_54v_power_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_power_peak_soc_54v_power_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_power_peak_soc_54v_power_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_power_peak_soc_54v_power_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/currentSOC12VPower"
+          category: power
+          metrics:
+            - name: habana_bmc_power_current_soc_12v_power
+              jsonPath: Reading
+            - name: habana_bmc_power_current_soc_12v_power_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_power_current_soc_12v_power_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_power_current_soc_12v_power_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_power_current_soc_12v_power_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading
+        - apiPath: "{{member}}/Sensors/peakSOC12VPower"
+          category: power
+          metrics:
+            - name: habana_bmc_power_peak_soc_12v_power
+              jsonPath: Reading
+            - name: habana_bmc_power_peak_soc_12v_power_threshold_upper_critical
+              jsonPath: Thresholds.UpperCritical.Reading
+            - name: habana_bmc_power_peak_soc_12v_power_threshold_upper_caution
+              jsonPath: Thresholds.UpperCaution.Reading
+            - name: habana_bmc_power_peak_soc_12v_power_threshold_lower_critical
+              jsonPath: Thresholds.LowerCritical.Reading
+            - name: habana_bmc_power_peak_soc_12v_power_threshold_lower_caution
+              jsonPath: Thresholds.LowerCaution.Reading

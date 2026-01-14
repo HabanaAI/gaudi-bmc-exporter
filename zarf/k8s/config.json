@@ -1,0 +1,711 @@
+{
+    "username": "",
+    "password": "",
+    "port": "5000",
+    "servers": [
+     {
+      "hostname": "g2-bmc115-c02o-idc.idc9.habana-labs.com",
+      "srv": "g2-srv115-c02o-idc"
+     },
+     {
+      "hostname": "g2-bmc121-c02p-idc.idc9.habana-labs.com",
+      "srv": "g2-srv121-c02p-idc"
+     },
+     {
+      "hostname": "g2-bmc122-c02p-idc.idc9.habana-labs.com",
+      "srv": "g2-srv122-c02p-idc"
+     },
+     {
+      "hostname": "g2-bmc123-c02p-idc.idc9.habana-labs.com",
+      "srv": "g2-srv123-c02p-idc"
+     },
+     {
+      "hostname": "g2-bmc124-c02p-idc.idc9.habana-labs.com",
+      "srv": "g2-srv124-c02p-idc"
+     },
+     {
+      "hostname": "g2-bmc125-c02p-idc.idc9.habana-labs.com",
+      "srv": "g2-srv125-c02p-idc"
+     },
+     {
+      "hostname": "g2-bmc126-c02p-idc.idc9.habana-labs.com",
+      "srv": "g2-srv126-c02p-idc"
+     },
+     {
+      "hostname": "g2-bmc49-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2-srv49-c02g-idc"
+     },
+     {
+      "hostname": "g2-bmc52-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2-srv52-c02g-idc"
+     },
+     {
+      "hostname": "g2-bmc53-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2-srv53-c02g-idc"
+     },
+     {
+      "hostname": "g2-bmc54-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2-srv54-c02g-idc"
+     },
+     {
+      "hostname": "g2-bmc55-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2-srv55-c02g-idc"
+     },
+     {
+      "hostname": "g2-bmc56-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2-srv56-c02g-idc"
+     },
+     {
+      "hostname": "g2-bmc65-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv65-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc66-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv66-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc67-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv67-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc68-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv68-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc69-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv69-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc70-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv70-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc71-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv71-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc72-c02i-idc.idc9.habana-labs.com",
+      "srv": "g2-srv72-c02i-idc"
+     },
+     {
+      "hostname": "g2-bmc73-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv73-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc74-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv74-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc75-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv75-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc76-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv76-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc77-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv77-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc78-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv78-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc79-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv79-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc80-c02j-idc.idc9.habana-labs.com",
+      "srv": "g2-srv80-c02j-idc"
+     },
+     {
+      "hostname": "g2-bmc81-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv81-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc82-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv82-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc83-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv83-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc84-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv84-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc85-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv85-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc86-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv86-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc87-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv87-c02k-idc"
+     },
+     {
+      "hostname": "g2-bmc88-c02k-idc.idc9.habana-labs.com",
+      "srv": "g2-srv88-c02k-idc"
+     },
+     {
+      "hostname": "g2h-bmc116-c02o-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv116-c02o-idc"
+     },
+     {
+      "hostname": "g2h-bmc117-c02o-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv117-c02o-idc"
+     },
+     {
+      "hostname": "g2h-bmc118-c02o-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv118-c02o-idc"
+     },
+     {
+      "hostname": "g2h-bmc119-c02o-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv119-c02o-idc"
+     },
+     {
+      "hostname": "g2h-bmc120-c02o-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv120-c02o-idc"
+     },
+     {
+      "hostname": "g2h-bmc31-c02d-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv31-c02d-idc"
+     },
+     {
+      "hostname": "g2h-bmc32-c02d-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv32-c02d-idc"
+     },
+     {
+      "hostname": "g2h-bmc33-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv33-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc34-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv34-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc35-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv35-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc36-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv36-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc37-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv37-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc38-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv38-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc39-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv39-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc40-c02e-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv40-c02e-idc"
+     },
+     {
+      "hostname": "g2h-bmc41-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv41-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc42-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv42-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc43-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv43-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc44-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv44-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc45-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv45-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc46-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv46-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc47-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv47-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc48-c02f-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv48-c02f-idc"
+     },
+     {
+      "hostname": "g2h-bmc50-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv50-c02g-idc"
+     },
+     {
+      "hostname": "g2h-bmc51-c02g-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv51-c02g-idc"
+     },
+     {
+      "hostname": "g2h-bmc57-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv57-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc58-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv58-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc59-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv59-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc60-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv60-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc61-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv61-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc62-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv62-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc63-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv63-c02h-idc"
+     },
+     {
+      "hostname": "g2h-bmc64-c02h-idc.idc9.habana-labs.com",
+      "srv": "g2h-srv64-c02h-idc"
+     },
+     {
+      "hostname": "hls2-bmc01-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv01-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc02-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv02-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc03-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv03-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc04-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv04-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc05-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv05-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc06-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv06-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc07-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv07-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc08-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv08-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc09-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv09-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc10-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv10-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc100-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv100-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc101-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv101-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc102-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv102-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc103-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv103-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc104-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv104-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc105-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv105-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc106-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv106-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc107-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv107-c06g-kfs"
+     },
+     {
+      "hostname": "hls2-bmc11-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv11-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc12-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv12-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc13-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv13-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc14-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv14-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc15-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv15-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc16-c06a-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv16-c06a-kfs"
+     },
+     {
+      "hostname": "hls2-bmc17-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv17-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc18-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv18-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc19-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv19-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc20-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv20-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc21-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv21-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc22-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv22-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc23-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv23-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc24-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv24-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc25-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv25-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc26-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv26-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc27-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv27-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc28-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv28-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc29-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv29-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc30-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv30-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc31-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv31-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc32-c06b-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv32-c06b-kfs"
+     },
+     {
+      "hostname": "hls2-bmc33-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv33-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc34-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv34-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc35-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv35-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc36-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv36-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc37-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv37-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc38-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv38-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc39-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv39-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc40-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv40-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc41-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv41-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc42-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv42-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc43-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv43-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc44-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv44-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc45-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv45-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc46-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv46-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc47-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv47-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc48-c06c-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv48-c06c-kfs"
+     },
+     {
+      "hostname": "hls2-bmc49-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv49-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc50-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv50-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc51-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv51-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc52-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv52-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc53-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv53-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc54-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv54-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc55-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv55-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc56-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv56-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc57-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv57-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc58-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv58-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc59-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv59-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc60-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv60-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc61-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv61-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc62-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv62-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc63-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv63-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc64-c06d-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv64-c06d-kfs"
+     },
+     {
+      "hostname": "hls2-bmc65-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv65-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc67-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv67-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc70-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv70-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc71-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv71-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc72-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv72-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc73-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv73-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc74-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv74-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc75-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv75-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc76-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv76-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc77-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv77-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc78-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv78-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc79-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv79-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc80-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv80-c06e-kfs"
+     },
+     {
+      "hostname": "hls2-bmc83-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv83-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc84-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv84-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc85-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv85-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc87-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv87-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc88-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv88-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc89-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv89-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc90-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv90-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc91-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv91-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc92-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv92-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc93-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv93-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc94-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv94-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc95-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv95-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc96-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv96-c06f-kfs"
+     },
+     {
+      "hostname": "hls2-bmc99-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2-srv99-c06g-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc66-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv66-c06e-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc68-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv68-c06e-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc69-c06e-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv69-c06e-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc81-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv81-c06f-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc82-c06f-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv82-c06f-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc97-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv97-c06g-kfs"
+     },
+     {
+      "hostname": "hls2h-bmc98-c06g-kfs.kfs.habana-labs.com",
+      "srv": "hls2h-srv98-c06g-kfs"
+     }
+    ]
+}

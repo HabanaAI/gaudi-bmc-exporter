@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ras-monitoring
+  namespace: monitoring
+  labels:
+    app: ras-monitoring
+spec:
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: ras-monitoring
+  template:
+    metadata:
+      labels:
+        app: ras-monitoring
+    spec:
+      serviceAccountName: bmc-exporter-service-account
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: habana.ai/services
+                operator: DoesNotExist
+              - key: habana.ai/launcher-service
+                operator: DoesNotExist
+              - key: node-role.kubernetes.io/control-plane
+                operator: DoesNotExist
+      containers:
+      - name: ras-monitoring
+        image: habana_bmc_exporter_image
+        imagePullPolicy: Always
+        args:
+          - "--config"
+          - "/tmp/config.json"
+          - "--exporter"
+          - "ras"
+        resources:
+          limits:
+            memory: 250Mi
+            cpu: 250m
+          requests:
+            cpu: 150m
+            memory: 100Mi
+        # readiness probes mark the service available to accept traffic.
+        readinessProbe:
+          httpGet:
+            path: /debug/readiness
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 2
+        # liveness probes mark the service alive or dead (to be restarted).
+        livenessProbe:
+          httpGet:
+            path: /debug/liveness
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 2
+        volumeMounts:
+        - name: config-volume
+          mountPath: /tmp
+        env:
+          - name: KUBERNETES_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: ipmi-creds-secret
+                key: ipmi_user
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: ipmi-creds-secret
+                key: ipmi_password
+      volumes:
+      - name: config-volume
+        configMap:
+          name: bmc-exporter-conf
