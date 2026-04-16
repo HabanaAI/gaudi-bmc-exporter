@@ -1,4 +1,23 @@
-FROM golang:1.25.5 AS builder
+FROM golang:1.25.8 AS golang
+FROM gcr.io/distroless/static:nonroot AS distroless
+
+FROM golang AS workspace
+ARG HTTP_PROXY=""
+ARG HTTPS_PROXY=""
+ARG NO_PROXY=""
+ENV http_proxy=${HTTP_PROXY}
+ENV https_proxy=${HTTPS_PROXY}
+ENV no_proxy=${NO_PROXY}
+ENV HTTP_PROXY=${HTTP_PROXY}
+ENV HTTPS_PROXY=${HTTPS_PROXY}
+ENV NO_PROXY=${NO_PROXY}
+ARG REMOTE_USER=user-name-goes-here
+ARG REMOTE_UID=1000
+ARG REMOTE_GID=$REMOTE_UID
+RUN getent group ${REMOTE_GID} > /dev/null 2>&1 || groupadd --gid ${REMOTE_GID} ${REMOTE_USER}
+RUN useradd --uid $REMOTE_UID --gid $REMOTE_GID -m $REMOTE_USER
+
+FROM golang AS builder
 ARG BUILD_REF
 ARG ENV
 WORKDIR /app
@@ -9,12 +28,12 @@ COPY . ./
 COPY zarf/config/${ENV}/alert_description.json /etc/
 COPY zarf/config/${ENV}/g3redfish.yaml /etc/
 RUN go mod tidy
-RUN go test $(go list ./... | grep -v '/ras-monitoring-api')
+RUN go test $(go list -buildvcs=false ./... | grep -v '/ras-monitoring-api')
 
 ENV GCFLAGS="all=-spectre=all -N -l"
 ENV ASMFLAGS="all=-spectre=all"
 ENV LDFLAGS="all=-s -w"
-RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH} go build ${GOFLAGS} -trimpath -mod=readonly -gcflags="${GCFLAGS}" -asmflags="${ASMFLAGS}" -ldflags="${LDFLAGS}" -a -o habana_bmc_exporter ./app/services/habana_bmc_exporter/
+RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH} go build ${GOFLAGS} -trimpath -buildvcs=false -mod=readonly -gcflags="${GCFLAGS}" -asmflags="${ASMFLAGS}" -ldflags="${LDFLAGS}" -a -o habana_bmc_exporter ./app/services/habana_bmc_exporter/
 RUN go get github.com/google/go-licenses && \
     go run github.com/google/go-licenses save ./... --save_path=licenses || true
 
@@ -24,7 +43,7 @@ RUN wget -q https://raw.githubusercontent.com/slimm609/checksec/refs/heads/main/
     chmod +x checksec
 RUN ./checksec --file=/app/habana_bmc_exporter --output=csv | grep -q "${CHECKSEC_REF}"
 
-FROM gcr.io/distroless/static:nonroot
+FROM distroless AS production
 ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
@@ -41,7 +60,7 @@ COPY zarf/config/${ENV}/g3redfish.yaml /etc/
 
 EXPOSE 4001
 ENTRYPOINT [ "./habana_bmc_exporter" ]
- 
+
 LABEL org.opencontainers.image.vendor="Intel Corp."
 LABEL org.opencontainers.image.title="Habana BMC Exporter"
 LABEL org.opencontainers.image.description="Prometheus exporter for Intel Gaudi BMC metrics"
