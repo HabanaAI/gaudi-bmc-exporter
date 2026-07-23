@@ -1,4 +1,4 @@
-FROM golang:1.25.8 AS golang
+FROM golang:1.26.4 AS golang
 FROM gcr.io/distroless/static:nonroot AS distroless
 
 FROM golang AS workspace
@@ -31,7 +31,7 @@ RUN go mod tidy
 RUN go test $(go list -buildvcs=false ./... | grep -v '/ras-monitoring-api')
 
 ENV GCFLAGS="all=-spectre=all -N -l"
-ENV ASMFLAGS="all=-spectre=all"
+ENV ASMFLAGS=""
 ENV LDFLAGS="all=-s -w"
 RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH} go build ${GOFLAGS} -trimpath -buildvcs=false -mod=readonly -gcflags="${GCFLAGS}" -asmflags="${ASMFLAGS}" -ldflags="${LDFLAGS}" -a -o habana_bmc_exporter ./app/services/habana_bmc_exporter/
 RUN go get github.com/google/go-licenses && \
