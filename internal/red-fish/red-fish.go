@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	bmcmonitoring "habana_bmc_exporter/pkg/bmc-monitoring"
-	"io"
 	"net/http"
 	"time"
 
@@ -118,7 +117,7 @@ func (c *Client) authenticate(ctx context.Context) error {
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -165,7 +164,7 @@ func (c *Client) Logout() error {
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}

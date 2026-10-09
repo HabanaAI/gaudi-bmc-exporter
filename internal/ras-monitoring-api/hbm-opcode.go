@@ -13,7 +13,10 @@ import (
 )
 
 const (
-	numOfHbmIndex = 6
+	numOfHbmIndex         = 6
+	numOfHbmChannels      = 8
+	maxNumOfRepairedLanes = numOfHbmIndex * numOfHbmChannels
+	maxNumOfReplacedRows  = 32
 )
 
 func (c *Client) Hbm(ctx context.Context, log *logrus.Entry) []rasmonitoring.Metric {
@@ -139,9 +142,17 @@ func (c *Client) getRepairedLanes(ctx context.Context, log *logrus.Entry) []rasm
 			continue
 		}
 
-		value, err := strconv.Atoi(val)
+		numLanes, err := strconv.Atoi(val)
 		if err != nil {
-			log.WithError(err).Error()
+			log.WithError(err).Error("repaired lanes failed parsing num of lanes to int")
+			continue
+		}
+		if numLanes > maxNumOfRepairedLanes {
+			log.WithFields(logrus.Fields{
+				"count": numLanes,
+				"max":   maxNumOfRepairedLanes,
+				"oam":   oam,
+			}).Error("repaired lanes count exceeds maximum")
 			continue
 		}
 
@@ -150,14 +161,8 @@ func (c *Client) getRepairedLanes(ctx context.Context, log *logrus.Entry) []rasm
 			MetricName:  fmt.Sprintf("%s_%s", rasmonitoring.PrefixHbm, rasmonitoring.HBMMetricNumOfRepairedLanes),
 			Hostname:    c.Hostname,
 			Oam:         fmt.Sprintf("%d", oam),
-			MetricValue: value,
+			MetricValue: numLanes,
 		})
-
-		numLanes, err := strconv.Atoi(val)
-		if err != nil {
-			log.WithError(err).Error("repaired lanes failed parsing num of lanes to int")
-			continue
-		}
 
 		// read all the repaired lanes.
 		for index := 0; index < numLanes; index++ {
@@ -230,9 +235,17 @@ func (c *Client) getReplacedRows(ctx context.Context, log *logrus.Entry) []rasmo
 			continue
 		}
 
-		value, err := strconv.Atoi(val)
+		numRows, err := strconv.Atoi(val)
 		if err != nil {
-			log.WithError(err).Error()
+			log.WithError(err).Error("replaced rows failed parsing data to int")
+			continue
+		}
+		if numRows > maxNumOfReplacedRows {
+			log.WithFields(logrus.Fields{
+				"count": numRows,
+				"max":   maxNumOfReplacedRows,
+				"oam":   oam,
+			}).Error("replaced rows count exceeds maximum")
 			continue
 		}
 
@@ -240,14 +253,8 @@ func (c *Client) getReplacedRows(ctx context.Context, log *logrus.Entry) []rasmo
 			MetricName:  fmt.Sprintf("%s_%s", rasmonitoring.PrefixHbm, rasmonitoring.HBMMetricNumOfReplacedRows),
 			Hostname:    c.Hostname,
 			Oam:         fmt.Sprintf("%d", oam),
-			MetricValue: value,
+			MetricValue: numRows,
 		})
-
-		numRows, err := strconv.Atoi(val)
-		if err != nil {
-			log.WithError(err).Error("replaced rows failed parsing data to int")
-			continue
-		}
 
 		// read all the replaced rows.
 		for index := 0; index < numRows; index++ {

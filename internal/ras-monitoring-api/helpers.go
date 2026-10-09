@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	bmcmonitoring "habana_bmc_exporter/pkg/bmc-monitoring"
 	"io"
 	"net/http"
 	"net/url"
@@ -65,7 +66,7 @@ func (c *Client) ValidToken(ctx context.Context, log *logrus.Entry) (string, boo
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return "failed reading the body", false
 	}
@@ -95,7 +96,7 @@ func (c *Client) Logout() error {
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -129,7 +130,7 @@ func (c *Client) authenticate() error {
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -182,7 +183,7 @@ func (c *Client) DeleteAllTokens(ctx context.Context) error {
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -241,7 +242,7 @@ func (c *Client) DeleteSession(ctx context.Context, sessionId int) error {
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -277,7 +278,7 @@ func (c *Client) doRequest(req *http.Request) ([]byte, error) {
 		}
 		defer resp.Body.Close()
 
-		body, err = io.ReadAll(resp.Body)
+		body, err = bmcmonitoring.ReadResponseBody(resp.Body)
 		if err != nil {
 			return false, fmt.Errorf("failed to read response body: %w", err)
 		}

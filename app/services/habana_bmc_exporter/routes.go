@@ -26,10 +26,10 @@ func (app application) routes(ctx context.Context, port string) *web.Server {
 			Route:   "/metrics",
 			Handler: app.metrics,
 		},
-		{
-			Route:   "/probe",
-			Handler: app.probe,
-		},
+		// {
+		// 	Route:   "/probe",
+		// 	Handler: app.probe,
+		// },
 		{
 			Route:   "/temperature",
 			Handler: app.temperature,

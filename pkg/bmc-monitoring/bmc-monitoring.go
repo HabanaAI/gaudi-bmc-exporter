@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"net/http"
+	"os"
 
 	"github.com/sirupsen/logrus"
 )
@@ -48,10 +49,11 @@ type Client struct {
 }
 
 func NewClient(opts ClientOpts) (*Client, error) {
+	insecure := os.Getenv("GAUDI_BMC_EXPORTER_INSECURE_SKIP_VERIFY") == "true"
 	c := http.Client{
 		Transport: &http.Transport{
 			TLSClientConfig: &tls.Config{
-				InsecureSkipVerify: true,
+				InsecureSkipVerify: insecure,
 			},
 		},
 	}

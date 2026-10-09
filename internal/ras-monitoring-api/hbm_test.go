@@ -18,10 +18,11 @@ func TestGetReplacedRows(t *testing.T) {
 	log := logger.New().WithField("test", "true")
 
 	type testCase struct {
-		name         string
-		checkRequest func(c *Client, r *http.Request)
-		sendResponse func(r *http.Request) (*http.Response, error)
-		expected     func() []rasmonitoring.Metric
+		name             string
+		checkRequest     func(c *Client, r *http.Request)
+		sendResponse     func(r *http.Request) (*http.Response, error)
+		expected         func() []rasmonitoring.Metric
+		expectedRequests int
 	}
 
 	numOfReplacedRowsUrl := fmt.Sprintf("https://hostname/ext/ras/%s/read?length=%d&oam=0&offset=%d&opcode=%d",
@@ -31,7 +32,8 @@ func TestGetReplacedRows(t *testing.T) {
 
 	tests := []testCase{
 		{
-			name: "1 replaced row, returns a valid metric",
+			name:             "1 replaced row, returns a valid metric",
+			expectedRequests: 2,
 			checkRequest: func(c *Client, r *http.Request) {
 				verifyHeaders(t, c, r)
 
@@ -97,7 +99,8 @@ func TestGetReplacedRows(t *testing.T) {
 			},
 		},
 		{
-			name: "0 replaced rows",
+			name:             "0 replaced rows",
+			expectedRequests: 1,
 			checkRequest: func(c *Client, r *http.Request) {
 				verifyHeaders(t, c, r)
 
@@ -125,10 +128,31 @@ func TestGetReplacedRows(t *testing.T) {
 				return metrics
 			},
 		},
+		{
+			name:             "excessive replaced row count is rejected",
+			expectedRequests: 1,
+			checkRequest: func(c *Client, r *http.Request) {
+				verifyHeaders(t, c, r)
+				require.Equal(t, numOfReplacedRowsUrl, r.URL.String())
+			},
+			sendResponse: func(r *http.Request) (*http.Response, error) {
+				body, err := json.Marshal(OpcodeData{Data: []byte{255, 255}})
+				require.NoError(t, err)
+
+				return &http.Response{
+					StatusCode: http.StatusOK,
+					Body:       io.NopCloser(bytes.NewReader(body)),
+				}, nil
+			},
+			expected: func() []rasmonitoring.Metric {
+				return nil
+			},
+		},
 	}
 
 	for _, test := range tests {
 		transport := &transport{}
+		requestCount := 0
 
 		client := &Client{
 			log: log,
@@ -144,7 +168,7 @@ func TestGetReplacedRows(t *testing.T) {
 		}
 		// check request
 		transport.RoundTripFunc = func(r *http.Request) (*http.Response, error) {
-
+			requestCount++
 			test.checkRequest(client, r)
 			return test.sendResponse(r)
 		}
@@ -161,16 +185,18 @@ func TestGetReplacedRows(t *testing.T) {
 		// wait until we finish to check the request
 		got := <-ch
 		require.Equal(t, test.expected(), got)
+		require.Equal(t, test.expectedRequests, requestCount)
 	}
 }
 func TestGetRepairedLanes(t *testing.T) {
 	log := logger.New().WithField("test", "true")
 
 	type testCase struct {
-		name         string
-		checkRequest func(c *Client, r *http.Request)
-		sendResponse func(r *http.Request) (*http.Response, error)
-		expected     func() []rasmonitoring.Metric
+		name             string
+		checkRequest     func(c *Client, r *http.Request)
+		sendResponse     func(r *http.Request) (*http.Response, error)
+		expected         func() []rasmonitoring.Metric
+		expectedRequests int
 	}
 
 	numOfLanesUrl := fmt.Sprintf("https://hostname/ext/ras/%s/read?length=%d&oam=0&offset=%d&opcode=%d",
@@ -179,7 +205,8 @@ func TestGetRepairedLanes(t *testing.T) {
 	repairedLaneUrl := "https://hostname/ext/ras/indirect/dram_repaired_lane?index=0&oam=0"
 	tests := []testCase{
 		{
-			name: "Number of lanes is 1, returns valid metrics",
+			name:             "Number of lanes is 1, returns valid metrics",
+			expectedRequests: 2,
 			checkRequest: func(c *Client, r *http.Request) {
 				verifyHeaders(t, c, r)
 
@@ -233,7 +260,8 @@ func TestGetRepairedLanes(t *testing.T) {
 			},
 		},
 		{
-			name: "Number of lanes is 0",
+			name:             "Number of lanes is 0",
+			expectedRequests: 1,
 			checkRequest: func(c *Client, r *http.Request) {
 				verifyHeaders(t, c, r)
 
@@ -260,12 +288,33 @@ func TestGetRepairedLanes(t *testing.T) {
 				return metrics
 			},
 		},
+		{
+			name:             "excessive repaired lane count is rejected",
+			expectedRequests: 1,
+			checkRequest: func(c *Client, r *http.Request) {
+				verifyHeaders(t, c, r)
+				require.Equal(t, numOfLanesUrl, r.URL.String())
+			},
+			sendResponse: func(r *http.Request) (*http.Response, error) {
+				body, err := json.Marshal(OpcodeData{Data: []byte{255, 255}})
+				require.NoError(t, err)
+
+				return &http.Response{
+					StatusCode: http.StatusOK,
+					Body:       io.NopCloser(bytes.NewReader(body)),
+				}, nil
+			},
+			expected: func() []rasmonitoring.Metric {
+				return nil
+			},
+		},
 	}
 
 	for _, test := range tests {
 
 		t.Run(test.name, func(t *testing.T) {
 			transport := &transport{}
+			requestCount := 0
 
 			client := &Client{
 				log: log,
@@ -281,7 +330,7 @@ func TestGetRepairedLanes(t *testing.T) {
 			}
 			// check request
 			transport.RoundTripFunc = func(r *http.Request) (*http.Response, error) {
-
+				requestCount++
 				test.checkRequest(client, r)
 				return test.sendResponse(r)
 			}
@@ -298,6 +347,7 @@ func TestGetRepairedLanes(t *testing.T) {
 			// wait until we finish to check the request
 			got := <-ch
 			require.Equal(t, test.expected(), got)
+			require.Equal(t, test.expectedRequests, requestCount)
 		})
 	}
 }

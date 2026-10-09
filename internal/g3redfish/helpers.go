@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"habana_bmc_exporter/internal/g3redfish/config"
 	bmcmonitoring "habana_bmc_exporter/pkg/bmc-monitoring"
-	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -86,7 +85,13 @@ func (c *Client) getMetricsFromEndpoint(ctx context.Context, log *logrus.Entry, 
 			log.WithError(err).Error("Failed to get value by field name")
 			return metrics
 		}
-		members := getMembers(rawMembers)
+		members, err := getMembers(rawMembers)
+		if err != nil {
+			log.WithField("jsonPath", endpoint.ForEach.JsonPath).
+				WithField("apiPath", endpoint.ApiPath).
+				WithError(err).Error("Failed to parse collection members")
+			return metrics
+		}
 
 		for member_id := range members {
 			member := members[member_id]
@@ -139,31 +144,36 @@ func (c *Client) getMetrics(ctx context.Context, log *logrus.Entry, category str
 }
 
 func getValueByFieldName(obj interface{}, path string) (interface{}, error) {
-	v := reflect.ValueOf(obj)
-
-	if v.Kind() == reflect.Map && v.Len() == 0 {
-		return nil, fmt.Errorf("failed to get %s", path)
+	if path == "" {
+		return nil, fmt.Errorf("failed to get empty path")
 	}
 
-	// Change keys to lowercase
-	newMap := make(map[string]interface{})
-	for _, key := range v.MapKeys() {
-		newMap[strings.ToLower(key.String())] = v.MapIndex(key).Interface()
+	value := obj
+	parts := strings.Split(path, ".")
+	for index, part := range parts {
+		current, ok := value.(map[string]interface{})
+		if !ok {
+			location := "root"
+			if index > 0 {
+				location = strings.Join(parts[:index], ".")
+			}
+			return nil, fmt.Errorf("failed to get %s: %s is not an object", path, location)
+		}
+
+		found := false
+		for key, candidate := range current {
+			if strings.EqualFold(key, part) {
+				value = candidate
+				found = true
+				break
+			}
+		}
+		if !found {
+			return nil, fmt.Errorf("failed to get %s", path)
+		}
 	}
 
-	// Extract the part of the path
-	parts := strings.Split(strings.ToLower(path), ".")
-	value, ok := newMap[parts[0]]
-	if !ok {
-		return nil, fmt.Errorf("failed to get %s", path)
-	}
-
-	if len(parts) == 1 {
-		return value, nil
-	}
-
-	nextPath := strings.Join(parts[1:], ".")
-	return getValueByFieldName(value, nextPath)
+	return value, nil
 }
 
 func shouldSkipMember(endpoint config.Endpoint, member string) bool {
@@ -186,23 +196,32 @@ func extractByRegex(text string, regex string, group int) string {
 	return ""
 }
 
-func getMembers(data interface{}) []string {
-	var ids []string
-	switch data.(type) {
-	case []interface{}:
-		// {"1": [{"@odata.id": "/redfish/v1/Systems/1"}]}
-		for _, member := range data.([]interface{}) {
-			memberMap := member.(map[string]interface{})
-			for key := range memberMap {
-				ids = append(ids, memberMap[key].(string))
-			}
-		}
-	case map[string]interface{}:
-		// {"1": {"@odata.id": "/redfish/v1/Systems/1"}}
-		memberMap := data.(map[string]interface{})
-		for key := range memberMap {
-			ids = append(ids, memberMap[key].(string))
-		}
+func getMembers(data interface{}) ([]string, error) {
+	members, ok := data.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("collection members must be an array, got %T", data)
 	}
-	return ids
+
+	ids := make([]string, 0, len(members))
+	for index, member := range members {
+		memberMap, ok := member.(map[string]interface{})
+		if !ok {
+			return nil, fmt.Errorf("collection member %d must be an object, got %T", index, member)
+		}
+
+		rawID, ok := memberMap["@odata.id"]
+		if !ok {
+			return nil, fmt.Errorf("collection member %d is missing @odata.id", index)
+		}
+		id, ok := rawID.(string)
+		if !ok {
+			return nil, fmt.Errorf("collection member %d @odata.id must be a string, got %T", index, rawID)
+		}
+		if strings.TrimSpace(id) == "" {
+			return nil, fmt.Errorf("collection member %d @odata.id must not be empty", index)
+		}
+		ids = append(ids, id)
+	}
+
+	return ids, nil
 }

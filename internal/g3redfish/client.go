@@ -121,7 +121,7 @@ func (c *Client) Logout() error {
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -186,7 +186,7 @@ func (c *Client) authenticate(ctx context.Context) error {
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -260,7 +260,7 @@ func (c *Client) request(ctx context.Context, log *logrus.Entry, url string, obj
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := bmcmonitoring.ReadResponseBody(resp.Body)
 	if err != nil {
 		return err
 	}

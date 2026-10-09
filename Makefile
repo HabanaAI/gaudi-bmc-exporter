@@ -29,21 +29,30 @@ build/bin:
 run: build/bin
 	@./bin/habana_bmc_exporter
 
-## build: build habana_bmc_exporter docker image
-.PHONY: build
-build:
+docker-build-%:
+	$(eval SUFFIX=$(word 1,$(subst production,,$*)))
 	docker build \
-	-f zarf/docker/dockerfile.habana_bmc_exporter \
-		-t $(RAS_MONITORING_IMAGE):$(RAS_MONITORING_VERSION) \
+		-f zarf/docker/dockerfile.habana_bmc_exporter \
+		-t $(RAS_MONITORING_IMAGE):$(RAS_MONITORING_VERSION)$(SUFFIX) \
 		--build-arg BUILD_VERSION=$(RAS_MONITORING_VERSION) \
 		--build-arg ENV=$(ENV) \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+		--target $* \
 		.
+
+## build: build habana_bmc_exporter docker image
+.PHONY: build
+build: docker-build-production docker-build-ubi9
+
+docker-push-%: ## Push your project for a specific OS and architecture (e.g., push-linux-arm64)
+	$(eval SUFFIX=$(word 1,$(subst production,,$*)))
+	docker push $(RAS_MONITORING_IMAGE):$(RAS_MONITORING_VERSION)$(SUFFIX)
 
 ## push/habana_bmc_exporter: push the habana_bmc_exporter to artifactory
 .PHONY: push/habana_bmc_exporter
 push/habana_bmc_exporter: build
-	@docker push $(RAS_MONITORING_IMAGE):$(RAS_MONITORING_VERSION)
+	$(MAKE) docker-push-production
+	$(MAKE) docker-push-ubi9
 
 ## kustomize/habana_bmc_exporter: build habana_bmc_exporter deployment yaml dynamically, and print to screen
 .PHONY: kustomize/habana_bmc_exporter

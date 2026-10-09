@@ -42,7 +42,7 @@ func (app application) probe(ctx context.Context, w http.ResponseWriter, r *http
 
 	app.log.Info("got a probe request")
 
-	server := r.URL.Query().Get("target")
+	target := r.URL.Query().Get("target")
 
 	var client bmcmonitoring.Exporter
 
@@ -53,22 +53,26 @@ func (app application) probe(ctx context.Context, w http.ResponseWriter, r *http
 		return
 	}
 
-	password := config.Password
-	username := config.Username
+	server, ok := configuredServer(config.Servers, target)
+	if !ok {
+		http.Error(w, "target is not configured", http.StatusBadRequest)
+		app.log.WithField("target", target).Warn("rejected probe target")
+		return
+	}
 
 	switch app.exporter {
 	case Ras:
 		client, err = rasmonitoringapi.NewClient(bmcmonitoring.ClientOpts{
-			Username:          username,
-			Password:          password,
-			Hostname:          server,
+			Username:          server.Username,
+			Password:          server.Password,
+			Hostname:          server.Hostname,
 			ConnectionTimeout: 10 * time.Second,
 		}, app.log)
 	case RedFish:
 		client, err = redfish.NewClient(bmcmonitoring.ClientOpts{
-			Username:          username,
-			Password:          password,
-			Hostname:          server,
+			Username:          server.Username,
+			Password:          server.Password,
+			Hostname:          server.Hostname,
 			ConnectionTimeout: 10 * time.Second,
 		}, app.log)
 	default:
@@ -120,6 +124,15 @@ func (app application) probe(ctx context.Context, w http.ResponseWriter, r *http
 			app.log.WithError(err).Error()
 		}
 	}
+}
+
+func configuredServer(servers []serverInfo, target string) (serverInfo, bool) {
+	for _, server := range servers {
+		if server.Hostname == target {
+			return server, true
+		}
+	}
+	return serverInfo{}, false
 }
 
 func (app application) exporterInfo(ctx context.Context, w http.ResponseWriter, r *http.Request) {
